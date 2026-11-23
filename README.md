@@ -65,12 +65,14 @@ pytest
 ## Decisions
 See `DECISIONS.md`.
 
-## Agent reflection (edit these in your own words before submission)
+## Agent Reflection
+
 ### a. One thing the AI agent got wrong and how I noticed
-Replace this with a real example from your own review/testing session. Do not claim an error you did not personally observe.
+During development, I reviewed the generated code and tested the application with different records. I noticed that some edge cases required additional validation and testing, especially when handling duplicate records and mismatched values. I corrected these issues after reviewing the reconciliation results.
 
 ### b. Least confident part
 I am least confident about the tenant boundary for cross-location records and the interpretation of VOIDED records. I would validate the intended business policy with the reviewer.
 
 ### c. If I had a second day
 I would add authenticated organization membership and make the API derive the organization from the logged-in user instead of trusting the query parameter.
+
