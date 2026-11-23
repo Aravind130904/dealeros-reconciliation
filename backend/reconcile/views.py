@@ -92,6 +92,14 @@ def disagreements(request):
     # -------------------------------
 
     all_rows = compare(a_rows, b_rows)
+    summary = {
+    "total_a_records": a_qs.count(),
+    "total_b_entries": b_qs.count(),
+    "mismatched_records": len(set(
+        row["record_id"] for row in all_rows
+    )),
+    "total_disagreements": len(all_rows),
+}
 
     # Number of unique records with disagreements.
     mismatched_records = len(
@@ -164,15 +172,8 @@ def disagreements(request):
     # -------------------------------
 
     return JsonResponse({
-        "org": org,
-
-        "summary": {
-            "total_a_records": total_a_records,
-            "total_b_entries": total_b_entries,
-            "mismatched_records": mismatched_records,
-            "total_disagreements": total_disagreements,
-        },
-
-        "count": len(safe_rows),
-        "results": safe_rows,
-    })
+    "org": org,
+    "summary": summary,
+    "count": len(safe_rows),
+    "results": safe_rows
+})
